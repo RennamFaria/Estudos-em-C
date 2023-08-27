@@ -1,0 +1,22 @@
+void BuscaB(Tipo x, no *raiz, no *&pt, bool &f, int &g) {
+  no *p = raiz;
+  pt = null;
+  f = false;
+  while (p != null) {
+    int qtd = p->n, i;
+    i = g = 0;
+    pt = p;
+    while (i < qtd)
+      if (x > p->chv[i]) {
+        i = g = i + 1;
+      } else if (x == p->chv[i]) {
+        f = true;
+        return;
+      } else {
+        p = p->pont[i];
+        i = qtd + 1;
+      }
+    if (i == qtd)
+      p = p->pont[qtd];
+  }
+}
