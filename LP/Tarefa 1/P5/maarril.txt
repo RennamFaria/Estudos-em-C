@@ -1,0 +1,31 @@
+Problema 5: Escreva um programa que, dado o comprimento de três segmentos de reta, determine se eles formam um triângulo e, caso formem, diga se o triângulo é equilátero, isóceles ou escaleno. Dica: De acordo com a Desigualdade Triangular, o comprimento de um dos lados é sempre inferior à soma dos comprimentos dos outros dois lados.
+
+Entrada 1:
+3 3 3
+
+Saída 1:
+O triângulo é equilátero(todos os valores iguaais)
+
+Entrada 2:
+3 4 5
+
+Saída 2:
+O triângulo é escaleno(todos diferentes)
+
+Entrada 3:
+3 3 5
+
+Saída 3:
+O triângulo é isóceles(dois iguaaais e um diferente)
+
+Entrada 4:
+4 9 15
+
+Saída 4:
+Não é possível formar um triângulo
+
+a==b==c	equilatero	
+a==b!=c	isoceles		b!=c
+b==c!=a	isoceles		c!=a
+c==a!=b isoceles		a!=b
+a!=b!=c escaleno

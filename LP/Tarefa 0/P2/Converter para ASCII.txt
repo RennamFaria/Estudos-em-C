@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main()
+{
+    char a,b;
+
+    printf("Digite um caratere:");
+    scanf("%c",& a);
+
+    b=(int)a; //Transformar o caracter em valor de ASCII
+
+    printf("Carater:%c Valor ASCII: %i",a,b);
+
+    return 0;
+}
