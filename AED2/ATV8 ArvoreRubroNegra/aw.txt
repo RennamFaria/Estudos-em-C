@@ -1,0 +1,105 @@
+void balancearEsq(TipoArvore *atual, TipoArvore *pai, TipoArvore *avo){
+  TipoArvore tio;
+  tio = (*avo)->subArvoreDir;
+  printf("a1 ");
+  printf("cor %d", tio->fb_cor);
+
+  if(tio->fb_cor == 1){
+    printf("a2 ");
+    (*pai)->fb_cor = 0;
+    (*avo)->fb_cor = 1;
+    tio->fb_cor = 0;
+    (*atual) = (*avo);
+  }else{
+    printf("a3 ");
+    if((*pai)->subArvoreDir == (*atual)){
+      printf("a4 ");
+      (*pai) = rotacaoLL(*pai);
+      printf("a5 ");
+      (*atual) = (*atual)->subArvoreEsq;
+    }
+    (*pai)->fb_cor = 0;
+    (*avo)->fb_cor = 1;
+    printf("a6 ");
+    (*avo) = rotacaoRR(*avo);
+    printf("a7 ");
+  }
+  return;
+}
+
+void balancearDir(TipoArvore *atual, TipoArvore *pai, TipoArvore *avo){
+  TipoArvore tio;
+  tio = (*avo)->subArvoreEsq;
+  printf("b1 ");
+
+  if(tio->fb_cor == 1){
+    printf("b2 ");
+    (*pai)->fb_cor = 0;
+    (*avo)->fb_cor = 1;
+    tio->fb_cor = 0;
+    (*atual) = (*avo);
+  }else{
+    printf("b3 ");
+    if((*pai)->subArvoreEsq == (*atual)){
+      printf("b4 ");    
+      (*pai) = rotacaoRR(*pai);
+      printf("b5 ");
+      (*atual) = (*atual)->subArvoreDir;
+    }
+    (*pai)->fb_cor = 0;
+    (*avo)->fb_cor = 1;
+    printf("b6 ");
+    (*avo) = rotacaoLL(*avo);
+    printf("b7 ");
+  }
+  return;
+}
+
+
+
+TipoArvore rotacaoEsquerda(TipoArvore arvore) {
+  TipoArvore pA, pB;
+    pA = arvore;
+
+    pB = pA->subArvoreEsq;
+    pA->subArvoreEsq = pB->subArvoreDir;
+    if (pB->subArvoreDir != NULL) {
+      pB->subArvoreDir->subArvorePai = pA;
+    }
+    pB->subArvorePai = pA->subArvorePai;
+    if (pA->subArvorePai == NULL) {
+      arvore = pB;
+    } else if (pA == pA->subArvorePai->subArvoreEsq) {
+      pA->subArvorePai->subArvoreEsq = pB;
+    } else {
+      pA->subArvorePai->subArvoreDir = pB;
+    }
+    pB->subArvoreDir = pA;
+    pA->subArvorePai = pB;
+
+    return arvore;
+}
+
+// Função auxiliar para realizar a rotação à direita
+TipoArvore rotacaoDireita(TipoArvore arvore) {
+    TipoArvore pA, pB;
+    pA = arvore;
+
+    pB = pA->subArvoreDir;
+    pA->subArvoreDir = pB->subArvoreEsq;
+    if (pB->subArvoreEsq != NULL) {
+      pB->subArvoreEsq->subArvorePai = pA;
+    }
+    pB->subArvorePai = pA->subArvorePai;
+    if (pA->subArvorePai == NULL) {
+      arvore = pB;
+    } else if (pA == pA->subArvorePai->subArvoreEsq) {
+      pA->subArvorePai->subArvoreEsq = pB;
+    } else {
+      pA->subArvorePai->subArvoreDir = pB;
+    }
+    pB->subArvoreEsq = pA;
+    pA->subArvorePai = pB;
+  
+    return arvore;
+}
